@@ -19,7 +19,7 @@ const Exchanges = () => {
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		const exchangesUrl = `${COIN_GECKO_URL}/exchanges?per_page=100`;
+		const exchangesUrl = `${COIN_GECKO_URL}/exchanges?per_page=20`;
 		const fetchExchanges = async () => {
 			try {
         const { data = [] } = await axios.get(exchangesUrl);

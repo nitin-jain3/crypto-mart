@@ -15,6 +15,8 @@ import {
 import Loader from './Loader';
 import Error from './Error';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cartSlice';
 
 const getCurrencySymbol = ({ currency }) => {
 	if (currency === 'inr') {
@@ -56,7 +58,7 @@ const Coins = () => {
   const btns = new Array(132).fill(1);
   // getAllCoins();
 	useEffect(() => {
-		const coinsUrl = `${COIN_GECKO_URL}/coins/markets?vs_currency=${currency}&page=${page}`;
+		const coinsUrl = `${COIN_GECKO_URL}/coins/markets?vs_currency=${currency}&page=${page}&per_page=20`;
 		const fetchCoins = async () => {
 			try {
 				const { data = [] } = await axios.get(coinsUrl);
@@ -125,8 +127,12 @@ const CoinCard = (props) => {
 		} = {},
 		currencySymbol = '₹',
 	} = props;
+	const dispatch = useDispatch();
+	const buyCoin = (props) => {
+		const { coin } = props;
+		dispatch(addToCart({...coin, currencySymbol}));
+	};
 	return (
-		<Link to={`/coin/${coinId}`} href={image}>
 			<VStack
 				w={'52'}
 				shadow={'lg'}
@@ -146,8 +152,23 @@ const CoinCard = (props) => {
 				</Heading>
 				<Text noOfLines={1}>{name}</Text>
 				<Text noOfLines={1}>{price ? `${currencySymbol}${price}` : 'NA'}</Text>
+				<Link to={`/coin/${coinId}`}>
+				<Button
+					bgColor={'blackAlpha.900'}
+					color={'white'}
+					onClick={() => buyCoin(props)}
+					>
+					More Details
+				</Button>
+				</Link>
+				<Button
+					bgColor={'blackAlpha.900'}
+					color={'white'}
+					onClick={() => buyCoin(props)}
+					>
+					Buy Now
+				</Button>
 			</VStack>
-		</Link>
 	);
 };
 

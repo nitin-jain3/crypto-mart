@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cart from "./components/Cart";
 import CoinDetails from "./components/CoinDetails";
 import Coins from "./components/Coins";
 import Exchanges from "./components/Exchanges";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/coins" element={ <Coins />}/>
         <Route path="/exchanges" element={ <Exchanges />}/>
         <Route path="/coin/:coinId" element={ <CoinDetails />}/>
+        <Route path="/cart" element={ <Cart />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
