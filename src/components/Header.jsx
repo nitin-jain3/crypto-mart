@@ -8,14 +8,14 @@ const Header = () => {
   const cart = useSelector(state => state.cart);
   return (
     <HStack spacing='auto'  p={'4'} bgColor={'blackAlpha.900'}>
-    <HStack spacing='30px' p={'4'} shadow={'base'} bgColor={'blackAlpha.900'}>
-      <Button variant={'unstyled'} color={'white'}>
+    <HStack spacing='30px' p={'4'} shadow={'base'}>
+      <Button variant={'unstyled'} color={'white'} bgColor={'blackAlpha.900'}>
         <Link to='/'>Home</Link>
       </Button>
-      <Button variant={'unstyled'} color={'white'}>
+      <Button variant={'unstyled'} color={'white'} bgColor={'blackAlpha.900'}>
         <Link to='/coins'>Coins</Link>
       </Button>
-      <Button variant={'unstyled'} color={'white'}>
+      <Button variant={'unstyled'} color={'white'} bgColor={'blackAlpha.900'}>
         <Link to='/exchanges'>Exchanges</Link>
       </Button>
     </HStack>
